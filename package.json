@@ -1,0 +1,16 @@
+{
+  "name": "sitemap-url-extractor",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Reads XML sitemaps and sitemap indexes, returns one flat JSON record per URL with a fixed key set.",
+  "scripts": {
+    "start": "node src/main.js",
+    "start:prod": "node src/main.js",
+    "test": "node test/smoke.mjs"
+  },
+  "dependencies": {
+    "apify": "^3.4.0",
+    "cheerio": "^1.0.0",
+    "crawlee": "^3.12.0"
+  }
+}

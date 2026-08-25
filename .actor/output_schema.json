@@ -1,0 +1,34 @@
+{
+    "actorOutputSchemaVersion": 1,
+    "title": "Sitemap URL Extractor output",
+    "description": "Run summary written to the key-value store; one flat JSON record per sitemap URL in the default dataset.",
+    "properties": {
+        "count": {
+            "type": "integer",
+            "title": "Count",
+            "description": "Number of URL records pushed to the default dataset."
+        },
+        "truncated": {
+            "type": "boolean",
+            "title": "Truncated",
+            "description": "True when maxUrls stopped collection before all sitemaps were fully read."
+        },
+        "sitemapsProcessed": {
+            "type": "integer",
+            "title": "Sitemaps processed",
+            "description": "Sitemap files (including index children) successfully fetched and parsed."
+        },
+        "failedSitemaps": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "url": { "type": "string", "title": "Sitemap URL" },
+                    "error": { "type": "string", "title": "Error" }
+                }
+            },
+            "title": "Failed sitemaps",
+            "description": "Sitemaps that could not be fetched or parsed, with the reason. Reported, never silent."
+        }
+    }
+}

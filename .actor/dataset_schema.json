@@ -1,0 +1,77 @@
+{
+    "actorSpecification": 1,
+    "title": "Sitemap URL Extractor dataset",
+    "description": "Every item has exactly these seven keys. Nulls are used when a field is missing from the sitemap entry or the entry failed validation. The shape is identical for every record, every run.",
+    "fields": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+            "url": {
+                "type": "string",
+                "title": "URL",
+                "description": "Value of the <loc> element, whitespace-collapsed. Always present on valid entries.",
+                "example": "https://www.sitemaps.org/"
+            },
+            "sitemapUrl": {
+                "type": "string",
+                "title": "Sitemap URL",
+                "description": "URL of the sitemap file this entry was read from.",
+                "example": "https://www.sitemaps.org/sitemap.xml"
+            },
+            "lastmod": {
+                "type": ["string", "null"],
+                "title": "Last modified",
+                "description": "Value of <lastmod>, whitespace-collapsed. Null when absent or empty.",
+                "example": "2016-11-21"
+            },
+            "changefreq": {
+                "type": ["string", "null"],
+                "title": "Change frequency",
+                "description": "Value of <changefreq>. Null when absent or empty.",
+                "example": "weekly"
+            },
+            "priority": {
+                "type": ["number", "null"],
+                "title": "Priority",
+                "description": "Value of <priority> parsed as a number. Null when absent, empty, or not numeric.",
+                "example": 0.5
+            },
+            "discoveredAt": {
+                "type": "string",
+                "title": "Discovered at",
+                "description": "ISO-8601 UTC timestamp of extraction.",
+                "example": "2026-08-25T01:09:01.819Z"
+            },
+            "error": {
+                "type": ["string", "null"],
+                "title": "Error",
+                "description": "Why the entry failed validation (missing or non-http <loc>); otherwise null. Failed entries are returned, never silently dropped.",
+                "example": null
+            }
+        },
+        "required": [
+            "url", "sitemapUrl", "lastmod", "changefreq", "priority", "discoveredAt", "error"
+        ]
+    },
+    "views": {
+        "overview": {
+            "title": "Overview",
+            "transformation": {
+                "fields": [
+                    "url", "lastmod", "priority", "sitemapUrl", "discoveredAt", "error"
+                ]
+            },
+            "display": {
+                "component": "table",
+                "properties": {
+                    "url": { "label": "URL", "format": "link" },
+                    "lastmod": { "label": "Last modified", "format": "date" },
+                    "priority": { "label": "Priority", "format": "number" },
+                    "sitemapUrl": { "label": "Sitemap", "format": "text" },
+                    "discoveredAt": { "label": "Discovered at", "format": "date" },
+                    "error": { "label": "Error", "format": "text" }
+                }
+            }
+        }
+    }
+}

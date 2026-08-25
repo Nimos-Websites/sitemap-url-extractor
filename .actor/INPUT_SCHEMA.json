@@ -1,0 +1,46 @@
+{
+    "title": "Sitemap URL Extractor Input",
+    "type": "object",
+    "schemaVersion": 1,
+    "properties": {
+        "startUrls": {
+            "title": "Sitemap URLs",
+            "type": "array",
+            "description": "XML sitemap or sitemap index files to read, e.g. https://example.com/sitemap.xml",
+            "editor": "requestListSources",
+            "prefill": [{ "url": "https://www.sitemaps.org/sitemap.xml" }],
+            "minItems": 1
+        },
+        "followIndexes": {
+            "title": "Follow sitemap indexes",
+            "type": "boolean",
+            "description": "When a sitemap is a <sitemapindex>, also read the child sitemaps it points to.",
+            "editor": "checkbox",
+            "default": true
+        },
+        "maxUrls": {
+            "title": "Max URLs",
+            "type": "integer",
+            "description": "Hard cap on URL records returned per run. Compute cost scales with this.",
+            "editor": "number",
+            "default": 100,
+            "minimum": 1,
+            "maximum": 10000
+        },
+        "includeGlobs": {
+            "title": "Include patterns",
+            "type": "array",
+            "description": "Keep only URLs matching at least one glob, e.g. https://example.com/blog/*. Empty = keep all.",
+            "editor": "stringList",
+            "default": []
+        },
+        "excludeGlobs": {
+            "title": "Exclude patterns",
+            "type": "array",
+            "description": "Drop URLs matching any glob, e.g. */tag/*. Applied before include patterns.",
+            "editor": "stringList",
+            "default": []
+        }
+    },
+    "required": ["startUrls"]
+}
